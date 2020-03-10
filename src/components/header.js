@@ -1,42 +1,47 @@
+import React, { useState } from "react"
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+import FimaLogo from "../images/fima-logo.svg"
+
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <header>
+      <nav className={`nav-wrapper ${isOpen ? "isOpen" : ""}`}>
+        <div className="logo">
+          <Link to="#">
+            <FimaLogo />
+          </Link>
+        </div>
+        <div
+          className={`nav-toggler ${isOpen ? "isOpen" : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
+          <span></span>
+          <span></span>
+        </div>
+        <ul className={`navigation ${isOpen ? "isOpen" : ""}`}>
+          <li className="nav-link isActive">
+            <Link to="#">Home</Link>
+          </li>
+          <li className="nav-link">
+            <Link to="#">Design</Link>
+          </li>
+          <li className="nav-link nav-logo">
+            <Link to="#">
+              <FimaLogo />
+            </Link>
+          </li>
+          <li className="nav-link">
+            <Link to="#">About</Link>
+          </li>
+          <li className="nav-link">
+            <Link to="#">Contact</Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  )
 }
 
 export default Header

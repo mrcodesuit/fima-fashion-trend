@@ -1,0 +1,783 @@
+@import "breakpoints.scss";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:300,400,500,600,700|Montserrat:300,400,700&display=swap');
+
+$black: #000;
+$darkGray: #3F2F35;
+$white: #FFF;
+$pink: #FD857B;
+$yellow: #F7BF25;
+
+*,
+*::before,
+*::after {
+   padding: 0;
+   margin: 0;
+}
+
+html,
+body {
+   font-size: 62.5%;
+}
+
+.container {
+   position: relative;
+   width: 100%;
+   max-width: 1900px;
+   height: auto;
+   margin: 0 auto;
+}
+
+header {
+   position: absolute;
+   height: 120px;
+   width: 100%;
+   z-index: 10;
+
+   @include media("<=desktop") {
+      height: 80px;
+   }
+
+   @include media("<=tablet") {
+      height: 100vh;
+   }
+
+   .nav-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.isOpen {
+         @include media("<=tablet") {
+            z-index: 11;
+         }
+      }
+
+
+      .logo {
+         position: absolute;
+         height: 50px;
+         width: 100px;
+         z-index: 11;
+         top: 0;
+         left: 0;
+         margin-top: 2rem;
+         margin-left: 2rem;
+
+         @include media(">tablet") {
+            display: none;
+         }
+
+      }
+
+      .nav-toggler {
+         position: absolute;
+         width: 30px;
+         height: 30px;
+         // background-color: pink;
+         z-index: 12;
+         top: 0;
+         right: 0;
+         margin-top: 2rem;
+         margin-right: 2.8rem;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+
+         @include media(">tablet") {
+            display: none;
+         }
+
+
+
+         &.isOpen {
+            position: fixed;
+
+            span {
+               background-color: $white;
+            }
+
+            span:nth-child(1) {
+               transform: rotate(-45deg) translateY(3px) translateX(-1px);
+            }
+
+            span:nth-child(2) {
+               transform-origin: center;
+               transform: rotate(45deg) translateY(-4px) translateX(-3px);
+            }
+         }
+
+         span {
+            position: relative;
+            display: block;
+            content: '';
+            background-color: $black;
+            width: 100%;
+            height: 2px;
+            transition: .75s;
+
+            &:last-of-type {
+               margin-top: 6px;
+            }
+         }
+      }
+
+      .navigation {
+         display: flex;
+         align-items: center;
+         font-family: 'Josefin Slab';
+         list-style: none;
+
+         @include media("<=tablet") {
+            position: fixed;
+            height: 100%;
+            width: 0%;
+            z-index: 11;
+            right: 0;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: #1B1B1B;
+            transition: .75s ease-in-out;
+
+            &.isOpen {
+               width: 70%;
+            }
+
+         }
+
+         .nav-link {
+            margin-right: 60px;
+
+            @include media("<=tablet") {
+               margin-top: 2.8rem;
+               margin-left: 2rem;
+
+               &.isActive {
+                  border-bottom: 1px solid $white;
+               }
+
+            }
+
+            &:nth-child(2),
+            &:nth-child(3) {
+               margin-right: 40px;
+
+               @include media("<tablet") {
+                  margin-right: 10px;
+               }
+            }
+
+            &.nav-logo {
+               height: 80px;
+               width: 141px;
+
+               @include media("<=desktop") {
+                  height: 50px;
+               }
+
+               @include media("<=tablet") {
+                  display: none;
+               }
+
+
+               a {
+                  &:after {
+                     content: none;
+                  }
+               }
+            }
+
+            &:last-child {
+               margin-right: 0;
+            }
+
+            a {
+               position: relative;
+               text-decoration: none;
+               text-transform: uppercase;
+               font-size: 1.2rem;
+               font-weight: 700;
+               color: $black;
+               letter-spacing: 1.5px;
+
+               @include media("<=tablet") {
+                  font-size: 2.4rem;
+                  color: $white;
+               }
+
+               &:hover {
+                  &:after {
+                     width: 100%;
+                  }
+               }
+
+               &:after {
+                  position: absolute;
+                  bottom: -3px;
+                  left: 0;
+                  content: '';
+                  height: 1.5px;
+                  width: 0;
+                  background-color: $black;
+                  transition: width .5s;
+               }
+            }
+         }
+      }
+   }
+}
+
+// SlickSlider
+
+.slick-slider {
+
+   @include media("<=tablet") {
+
+      display: none;
+   }
+
+   .slick-prev,
+   .slick-next {
+      z-index: 1;
+      width: auto;
+      height: auto;
+
+      &::before {
+         font-family: 'icomoon';
+         color: $darkGray;
+         font-size: 4.8rem;
+      }
+   }
+
+   .slick-prev {
+      left: 20px;
+
+      &::before {
+         content: '\e910';
+      }
+   }
+
+   .slick-next {
+      right: 20px;
+      transform-origin: right top;
+
+      &::before {
+         content: '\e911';
+      }
+   }
+
+   .slick-dots {
+      bottom: 4rem;
+   }
+}
+
+// HomeSlider
+
+.slide {
+   position: relative;
+
+   .slide-content {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Josefin Slab';
+      text-transform: uppercase;
+
+      h1 {
+         position: relative;
+
+         font-size: 5.6rem;
+         margin: 0;
+         line-height: 1.2;
+      }
+
+      .time {
+         position: relative;
+         font-size: 4.0rem;
+         font-weight: 300;
+      }
+
+      .btn-row {
+         position: relative;
+         margin-top: 54px;
+         padding: 24px 34px;
+         background-color: $darkGray;
+         letter-spacing: 3px;
+         font-size: 1.6rem;
+         color: $white;
+         cursor: pointer;
+         border: 2px solid transparent;
+         transition: background-color .25s;
+
+
+         &:hover {
+            border: 2px solid $darkGray;
+            background-color: transparent;
+            color: $darkGray;
+            font-weight: 700;
+         }
+
+      }
+   }
+
+}
+
+// main-content
+
+.main-content {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: auto;
+   margin-top: -3px;
+
+   @include media("<=tablet") {
+      margin-top: 0px;
+
+   }
+
+   // pinkArea yellowArea
+   .pinkArea,
+   .yellowArea {
+      width: 100%;
+      display: flex;
+      height: auto;
+
+      @include media("<=tablet") {
+         flex-direction: column;
+      }
+
+      .img-wrapper {
+         width: 40%;
+         height: auto;
+
+         @include media("<=tablet") {
+            width: 100%;
+         }
+
+         .gatsby-image-wrapper {
+            height: 100%;
+
+            img {
+               object-position: 0 !important;
+
+            }
+         }
+      }
+
+      .content-wrapper {
+         width: 60%;
+         display: flex;
+         justify-content: space-evenly;
+         align-items: center;
+         padding: 4.8rem 0;
+
+         @include media("<=tablet") {
+            width: 100%;
+         }
+
+         .square-small {
+
+            width: 308px;
+            height: 355px;
+            border: 9px solid $pink;
+            opacity: 0;
+
+            @include media("<=desktop") {
+               width: 230px;
+               height: 272px;
+            }
+
+            @include media("<tablet") {
+               width: 116px;
+               height: 133px;
+               border: 5px solid $pink;
+            }
+
+            .gatsby-image-wrapper {
+               height: 120%;
+               left: -32%;
+               top: -11%;
+               opacity: 0;
+            }
+         }
+
+         .square-medium {
+            width: 290px;
+            height: 610px;
+            border: 9px solid $pink;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+
+            @include media("<=desktop") {
+               width: 217px;
+               height: 456px;
+            }
+
+            @include media("<tablet") {
+               width: 109px;
+               height: 230px;
+               border: 5px solid $pink;
+            }
+
+            .gatsby-image-wrapper {
+               left: -30%;
+               width: 130%;
+               opacity: 0;
+            }
+         }
+
+         .title,
+         .subtitle {
+            text-align: center;
+            font-family: 'Josefin Slab';
+         }
+
+         .title {
+            margin-top: 2.4rem;
+            font-size: 2.4rem;
+            font-weight: 600;
+
+            @include media("<tablet") {
+               margin-top: 1.6rem;
+               font-size: 1.6rem;
+            }
+         }
+
+         .subtitle {
+            margin-top: 0.8rem;
+            font-size: 1.6rem;
+         }
+      }
+   }
+
+   .pinkArea {
+
+      @include media("<=tablet") {
+         margin-top: 80px;
+      }
+
+      .img-wrapper {
+
+         @include media("<desktop") {
+            // max-height: 700px;
+         }
+
+         .gatsby-image-wrapper {
+            img {
+               left: 227px !important;
+               // object-position: -128% !important;
+               transform: scale(1.6);
+
+
+               @include media(">1440px") {
+
+                  top: 100px !important;
+               }
+
+
+               @include media("<LGdesktop") {
+                  // object-position: -29% !important;
+                  transform: scale(1.4);
+                  left: 102px !important;
+               }
+
+               @include media("<desktop") {
+                  max-height: 700px;
+                  // object-position: -41% !important;
+               }
+
+               @include media("<=tablet") {
+                  left: 152px !important;
+               }
+
+               @include media(">phone", "<=414px") {
+                  left: 81px !important;
+                  // object-position: -41% !important;
+               }
+
+               @include media("<=phone") {
+                  left: 74px !important;
+                  // object-position: -41% !important;
+               }
+
+               @include media("<=320px") {
+                  left: 62px !important;
+                  // object-position: -41% !important;
+               }
+
+            }
+         }
+      }
+   }
+
+
+   .yellowArea {
+
+      @include media("<=tablet") {
+         min-height: unset;
+         height: auto;
+      }
+
+      .square-small,
+      .square-medium {
+         border-color: $yellow !important;
+      }
+
+      .square-small {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+
+         .gatsby-image-wrapper {
+            width: 130%;
+            top: 0 !important;
+         }
+      }
+   }
+
+   .grayArea,
+   .blueArea {
+      display: flex;
+      width: 100%;
+
+      @include media("<=tablet") {
+         flex-direction: column-reverse;
+      }
+
+      .content-wrapper {
+         width: 40%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-family: 'Josefin Slab';
+
+         @include media("<=tablet") {
+            width: 100%;
+         }
+
+         .content-wrapper-inner {
+            width: 60%;
+
+            @include media("<=tablet") {
+               width: 100%;
+               margin: 2.4rem 0;
+               padding: 2.4rem;
+            }
+
+
+            .main-heading {
+               font-size: 4.8rem;
+               line-height: 1;
+               opacity: 0;
+
+               @include media("<tablet") {
+                  font-size: 2.8rem;
+               }
+            }
+
+            .text {
+               font-size: 1.6rem;
+               line-height: 1.6;
+               margin-top: 1.6rem;
+               color: #8F8F8F;
+               opacity: 0;
+
+               @include media("<tablet") {
+                  font-size: 1.4rem;
+               }
+
+            }
+
+            a {
+               text-decoration: none;
+               color: $black;
+            }
+
+            .btn-row {
+               margin-top: 1.6rem;
+               font-size: 1.6rem;
+               text-transform: uppercase;
+               letter-spacing: 2px;
+               font-weight: 700;
+               display: flex;
+               align-items: center;
+               opacity: 0;
+
+               @include media("<=tablet") {
+                  font-size: 1.4rem;
+               }
+
+               &:hover {
+                  svg {
+                     transform: translateX(10px)
+                  }
+               }
+
+               svg {
+                  height: 1.4rem;
+                  margin-left: 2.4rem;
+                  margin-bottom: 3px;
+                  transition: .5s;
+               }
+            }
+         }
+      }
+
+      .img-wrapper {
+         width: 60%;
+
+         @include media("<=tablet") {
+
+            width: 100%;
+         }
+      }
+   }
+
+}
+
+// footer
+
+footer {
+   background-color: #1B1B1B;
+   color: $white;
+   height: 400px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   font-family: 'Josefin Slab';
+
+   @include media("<tablet") {
+      height: 300px;
+   }
+
+   h2 {
+      font-size: 4rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 3.2rem;
+
+      @include media("<tablet") {
+         font-size: 2.4rem;
+      }
+   }
+
+   .form-wrapper {
+      display: flex;
+      width: 50%;
+      justify-content: center;
+
+      @include media("<=tablet") {
+         width: 90%;
+      }
+
+      input {
+         font-size: 2rem;
+         width: 100%;
+         background-color: transparent;
+         border: none;
+         outline: none;
+         color: $white;
+         letter-spacing: 1px;
+         border-bottom: 1px solid #474747;
+         caret-color: #474747;
+         padding-bottom: 0.4rem;
+
+         @include media("<tablet") {
+            font-size: 1.6rem;
+         }
+      }
+
+      .btn-row {
+         display: flex;
+         align-items: center;
+         font-size: 1.6rem;
+         border-bottom: 1px solid #474747;
+         text-transform: uppercase;
+         letter-spacing: 2px;
+         padding-left: .8rem;
+         padding-right: 1rem;
+         cursor: pointer;
+
+         @include media("<tablet") {
+            font-size: 1rem;
+            padding-left: .4rem;
+            padding-right: .5rem;
+         }
+
+         &:hover {
+            svg {
+               transform: translateX(10px)
+            }
+         }
+
+         svg {
+            height: 1.4rem;
+            margin-left: 1.6rem;
+            margin-bottom: 3px;
+            transition: .5s;
+
+            @include media("<tablet") {
+               height: 1rem;
+               margin-left: 0.8rem;
+               margin-bottom: 2px;
+            }
+         }
+
+      }
+   }
+
+   .social-links {
+      list-style: none;
+      width: 100px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+
+
+      @include media("<tablet") {
+         margin-bottom: 0.4rem;
+      }
+
+      li {
+
+         svg {
+            fill: $white;
+            transform: scale(0.8);
+
+            @include media("<tablet") {
+               transform: scale(0.6);
+            }
+         }
+      }
+
+   }
+
+   .from {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 1.6rem;
+      font-size: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Montserrat';
+
+      @include media("<tablet") {
+         font-size: 1.1rem;
+      }
+   }
+
+
+}
