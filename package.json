@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "fima-fashion-house",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Fima - Fashion House (Design to Code)",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Mirko Roßbach (codesuit)",
   "dependencies": {
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "animejs": "^3.1.0",

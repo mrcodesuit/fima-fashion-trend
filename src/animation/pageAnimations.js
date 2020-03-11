@@ -81,7 +81,7 @@ function grayAreaAnimation() {
     targets: ".grayArea .main-heading",
     opacity: [0, 1],
     translateX: [-50, 0],
-  })
+  },"+=1200")
     .add(
       {
         targets: ".grayArea .text",
@@ -111,7 +111,7 @@ function blueAreaAnimation() {
     targets: ".blueArea .main-heading",
     opacity: [0, 1],
     translateX: [-50, 0],
-  })
+  },"+=1200")
     .add(
       {
         targets: ".blueArea .text",
