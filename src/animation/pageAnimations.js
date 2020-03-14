@@ -78,13 +78,13 @@ function grayAreaAnimation() {
   })
 
   tl.add({
-    targets: ".grayArea .main-heading",
+    targets: ".grayArea .content-wrapper .main-heading",
     opacity: [0, 1],
     translateX: [-50, 0],
-  },"+=1200")
+  },"+=1000")
     .add(
       {
-        targets: ".grayArea .text",
+        targets: ".grayArea .content-wrapper .text",
         opacity: [0, 1],
         translateX: [-50, 0],
       },
@@ -92,7 +92,7 @@ function grayAreaAnimation() {
     )
     .add(
       {
-        targets: ".grayArea .btn-row",
+        targets: ".grayArea .content-wrapper .btn-row",
         opacity: [0, 1],
         translateX: [-50, 0],
       },
@@ -108,13 +108,13 @@ function blueAreaAnimation() {
   })
 
   tl.add({
-    targets: ".blueArea .main-heading",
+    targets: ".blueArea .content-wrapper .main-heading",
     opacity: [0, 1],
     translateX: [-50, 0],
-  },"+=1200")
+  },"+=1000")
     .add(
       {
-        targets: ".blueArea .text",
+        targets: ".blueArea .content-wrapper .text",
         opacity: [0, 1],
         translateX: [-50, 0],
       },
@@ -122,7 +122,7 @@ function blueAreaAnimation() {
     )
     .add(
       {
-        targets: ".blueArea .btn-row",
+        targets: ".blueArea .content-wrapper .btn-row",
         opacity: [0, 1],
         translateX: [-50, 0],
       },
